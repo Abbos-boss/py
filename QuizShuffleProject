@@ -1,0 +1,27 @@
+import random
+quiz_matni={'apple':'olma','pear':'nok','cherry':'gilos','peach':'shaftoli','apelsin':'mandarin','grapefruit':'afrika mevasi'}
+for quiz_soni in range(5):
+    quiz_fayli=open(f'quiznomi{quiz_soni+1}.txt','w')
+    javoblar = open("javoblar", "w")
+    quiz_fayli.write('Ism:\n\nSana: \n\nSemeter\n')
+    quiz_fayli.write(' '*20+f'Tarjima Quizcha (Forma {quiz_soni+1}')
+    quiz_fayli.write('\n\n')
+    soz = list(quiz_matni.keys())
+    random.shuffle(soz)
+#step3 Creating anwer options
+    for savol_son in range (5):
+            togri=quiz_matni[soz[savol_son]]
+            notogri=list(quiz_matni.values())
+            del notogri[notogri.index(togri)]
+            notogri=random.sample(notogri,2)
+            variant=notogri+[togri]
+            random.shuffle(variant)
+#step4 Write a content to the qjues and answer keys
+            quiz_fayli.write(f'{savol_son+1}. What is the translation of {soz[savol_son]}?\n')
+            for i in range(3):
+                quiz_fayli.write(f"{'ABC'[i]}.{variant[i]}\n")
+#javoblar=open("javoblar","w")
+            javoblar.write(f"{savol_son+1}.{'ABC'[variant.index(togri)]}\n")
+
+quiz_fayli.close()
+javoblar.close()
